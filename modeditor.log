@@ -1,0 +1,334 @@
+2023-08-10 10:08:48,094 - INFO - Added tree node: 物品
+2023-08-10 10:08:48,094 - INFO - Added attribute node: 名称: meleeWpnBladeT1CandyKnife
+2023-08-10 10:08:48,094 - INFO - Added tree node: property
+2023-08-10 10:08:48,094 - INFO - Added attribute node: 名称: Tags
+2023-08-10 10:08:48,094 - INFO - Added attribute node: value: knife,melee,grunting,light,perkFlurryOfAgility,weapon,meleeWeapon,attAgility,perkDeepCuts,perkTheHuntsman,canHaveCosmetic,bladeSkill
+2023-08-10 10:08:48,095 - INFO - Added tree node: property
+2023-08-10 10:08:48,095 - INFO - Added attribute node: 名称: DisplayType
+2023-08-10 10:08:48,095 - INFO - Added attribute node: value: meleeKnife
+2023-08-10 10:08:48,095 - INFO - Added tree node: property
+2023-08-10 10:08:48,095 - INFO - Added attribute node: 名称: HoldType
+2023-08-10 10:08:48,095 - INFO - Added attribute node: value: 36
+2023-08-10 10:08:48,095 - INFO - Added tree node: property
+2023-08-10 10:08:48,095 - INFO - Added attribute node: 名称: Meshfile
+2023-08-10 10:08:48,095 - INFO - Added attribute node: value: @:Other/Items/Weapons/Melee/Candycane/candycaneShivPrefab.prefab
+2023-08-10 10:08:48,095 - INFO - Added tree node: property
+2023-08-10 10:08:48,095 - INFO - Added attribute node: 名称: Material
+2023-08-10 10:08:48,095 - INFO - Added attribute node: value: Mmetal
+2023-08-10 10:08:48,095 - INFO - Added tree node: property
+2023-08-10 10:08:48,095 - INFO - Added attribute node: 名称: RepairTools
+2023-08-10 10:08:48,095 - INFO - Added attribute node: value: resourceRepairKit
+2023-08-10 10:08:48,095 - INFO - Added tree node: property
+2023-08-10 10:08:48,096 - INFO - Added attribute node: 名称: DegradationBreaksAfter
+2023-08-10 10:08:48,096 - INFO - Added attribute node: value: false
+2023-08-10 10:08:48,096 - INFO - Added tree node: property
+2023-08-10 10:08:48,096 - INFO - Added attribute node: 名称: EconomicValue
+2023-08-10 10:08:48,096 - INFO - Added attribute node: value: 350
+2023-08-10 10:08:48,096 - INFO - Added tree node: property
+2023-08-10 10:08:48,096 - INFO - Added attribute node: 名称: TraderStageTemplate
+2023-08-10 10:08:48,096 - INFO - Added attribute node: value: baseTier1
+2023-08-10 10:08:48,096 - INFO - Added tree node: property
+2023-08-10 10:08:48,096 - INFO - Added attribute node: 名称: SoundJammed
+2023-08-10 10:08:48,096 - INFO - Added attribute node: value: ItemNeedsRepair
+2023-08-10 10:08:48,096 - INFO - Added tree node: property
+2023-08-10 10:08:48,096 - INFO - Added attribute node: 名称: SoundDestroy
+2023-08-10 10:08:48,096 - INFO - Added attribute node: value: wooddestroy1
+2023-08-10 10:08:48,096 - INFO - Added tree node: property
+2023-08-10 10:08:48,096 - INFO - Added attribute node: 名称: ShowQuality
+2023-08-10 10:08:48,096 - INFO - Added attribute node: value: true
+2023-08-10 10:08:48,096 - INFO - Added tree node: property
+2023-08-10 10:08:48,097 - INFO - Added attribute node: 名称: Group
+2023-08-10 10:08:48,097 - INFO - Added attribute node: value: Ammo/Weapons,Melee Weapons
+2023-08-10 10:08:48,097 - INFO - Added tree node: property
+2023-08-10 10:08:48,097 - INFO - Added attribute node: 名称: RepairExpMultiplier
+2023-08-10 10:08:48,097 - INFO - Added attribute node: value: 5.5
+2023-08-10 10:08:48,097 - INFO - Added tree node: property
+2023-08-10 10:08:48,097 - INFO - Added attribute node: 名称: SoundUnholster
+2023-08-10 10:08:48,097 - INFO - Added attribute node: value: weapon_unholster
+2023-08-10 10:08:48,097 - INFO - Added tree node: property
+2023-08-10 10:08:48,097 - INFO - Added attribute node: 名称: SoundHolster
+2023-08-10 10:08:48,097 - INFO - Added attribute node: value: weapon_holster
+2023-08-10 10:08:48,097 - INFO - Added tree node: property
+2023-08-10 10:08:48,097 - INFO - Added attribute node: class: Action0
+2023-08-10 10:08:48,097 - INFO - Added tree node: property
+2023-08-10 10:08:48,097 - INFO - Added attribute node: 名称: Class
+2023-08-10 10:08:48,097 - INFO - Added attribute node: value: DynamicMelee
+2023-08-10 10:08:48,097 - INFO - Added tree node: property
+2023-08-10 10:08:48,098 - INFO - Added attribute node: 名称: Damage_type
+2023-08-10 10:08:48,100 - INFO - Added attribute node: value: Piercing
+2023-08-10 10:08:48,100 - INFO - Added tree node: property
+2023-08-10 10:08:48,100 - INFO - Added attribute node: 名称: Sphere
+2023-08-10 10:08:48,100 - INFO - Added attribute node: value: .1
+2023-08-10 10:08:48,100 - INFO - Added tree node: property
+2023-08-10 10:08:48,100 - INFO - Added attribute node: 名称: Sound_start
+2023-08-10 10:08:48,100 - INFO - Added attribute node: value: knife_bone_swinglight
+2023-08-10 10:08:48,100 - INFO - Added tree node: property
+2023-08-10 10:08:48,100 - INFO - Added attribute node: 名称: ToolCategory.harvestingTools
+2023-08-10 10:08:48,100 - INFO - Added attribute node: value: .5
+2023-08-10 10:08:48,100 - INFO - Added attribute node: param1: 1
+2023-08-10 10:08:48,101 - INFO - Added tree node: property
+2023-08-10 10:08:48,101 - INFO - Added attribute node: 名称: ToolCategory.Butcher
+2023-08-10 10:08:48,101 - INFO - Added attribute node: value: 0
+2023-08-10 10:08:48,101 - INFO - Added attribute node: param1: 5
+2023-08-10 10:08:48,101 - INFO - Added tree node: property
+2023-08-10 10:08:48,101 - INFO - Added attribute node: 名称: UseGrazingHits
+2023-08-10 10:08:48,101 - INFO - Added attribute node: value: false
+2023-08-10 10:08:48,101 - INFO - Added tree node: property
+2023-08-10 10:08:48,101 - INFO - Added attribute node: 名称: GrazeStart
+2023-08-10 10:08:48,101 - INFO - Added attribute node: value: .25
+2023-08-10 10:08:48,101 - INFO - Added tree node: property
+2023-08-10 10:08:48,101 - INFO - Added attribute node: 名称: GrazeEnd
+2023-08-10 10:08:48,101 - INFO - Added attribute node: value: .35
+2023-08-10 10:08:48,101 - INFO - Added tree node: property
+2023-08-10 10:08:48,101 - INFO - Added attribute node: 名称: SwingDegrees
+2023-08-10 10:08:48,101 - INFO - Added attribute node: value: 90
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,102 - INFO - Added attribute node: 名称: SwingAngle
+2023-08-10 10:08:48,102 - INFO - Added attribute node: value: 90
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,102 - INFO - Added attribute node: class: HitSounds
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,102 - INFO - Added attribute node: 名称: Override0
+2023-08-10 10:08:48,102 - INFO - Added attribute node: value: organic
+2023-08-10 10:08:48,102 - INFO - Added attribute node: param1: metalstaborganic
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,102 - INFO - Added attribute node: class: GrazeSounds
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,102 - INFO - Added attribute node: 名称: Override0
+2023-08-10 10:08:48,102 - INFO - Added attribute node: value: organic
+2023-08-10 10:08:48,102 - INFO - Added attribute node: param1: metalgrazeorganic
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,102 - INFO - Added attribute node: class: Action1
+2023-08-10 10:08:48,102 - INFO - Added tree node: property
+2023-08-10 10:08:48,103 - INFO - Added attribute node: 名称: Class
+2023-08-10 10:08:48,103 - INFO - Added attribute node: value: DynamicMelee
+2023-08-10 10:08:48,103 - INFO - Added tree node: property
+2023-08-10 10:08:48,103 - INFO - Added attribute node: 名称: Damage_type
+2023-08-10 10:08:48,103 - INFO - Added attribute node: value: Piercing
+2023-08-10 10:08:48,103 - INFO - Added tree node: property
+2023-08-10 10:08:48,103 - INFO - Added attribute node: 名称: Sphere
+2023-08-10 10:08:48,103 - INFO - Added attribute node: value: .1
+2023-08-10 10:08:48,103 - INFO - Added tree node: property
+2023-08-10 10:08:48,103 - INFO - Added attribute node: 名称: Sound_start
+2023-08-10 10:08:48,103 - INFO - Added attribute node: value: knife_bone_swingheavy
+2023-08-10 10:08:48,103 - INFO - Added tree node: property
+2023-08-10 10:08:48,103 - INFO - Added attribute node: 名称: ToolCategory.harvestingTools
+2023-08-10 10:08:48,103 - INFO - Added attribute node: value: .5
+2023-08-10 10:08:48,103 - INFO - Added attribute node: param1: 1
+2023-08-10 10:08:48,103 - INFO - Added tree node: property
+2023-08-10 10:08:48,103 - INFO - Added attribute node: 名称: ToolCategory.Butcher
+2023-08-10 10:08:48,103 - INFO - Added attribute node: value: 0
+2023-08-10 10:08:48,103 - INFO - Added attribute node: param1: 5
+2023-08-10 10:08:48,104 - INFO - Added tree node: property
+2023-08-10 10:08:48,104 - INFO - Added attribute node: 名称: UsePowerAttackAnimation
+2023-08-10 10:08:48,104 - INFO - Added attribute node: value: true
+2023-08-10 10:08:48,104 - INFO - Added tree node: property
+2023-08-10 10:08:48,104 - INFO - Added attribute node: 名称: UseGrazingHits
+2023-08-10 10:08:48,104 - INFO - Added attribute node: value: false
+2023-08-10 10:08:48,104 - INFO - Added tree node: property
+2023-08-10 10:08:48,104 - INFO - Added attribute node: 名称: GrazeStart
+2023-08-10 10:08:48,104 - INFO - Added attribute node: value: .2
+2023-08-10 10:08:48,104 - INFO - Added tree node: property
+2023-08-10 10:08:48,104 - INFO - Added attribute node: 名称: GrazeEnd
+2023-08-10 10:08:48,104 - INFO - Added attribute node: value: .3
+2023-08-10 10:08:48,104 - INFO - Added tree node: property
+2023-08-10 10:08:48,104 - INFO - Added attribute node: 名称: SwingDegrees
+2023-08-10 10:08:48,104 - INFO - Added attribute node: value: 80
+2023-08-10 10:08:48,104 - INFO - Added tree node: property
+2023-08-10 10:08:48,104 - INFO - Added attribute node: 名称: SwingAngle
+2023-08-10 10:08:48,104 - INFO - Added attribute node: value: 140
+2023-08-10 10:08:48,105 - INFO - Added tree node: property
+2023-08-10 10:08:48,105 - INFO - Added attribute node: class: HitSounds
+2023-08-10 10:08:48,105 - INFO - Added tree node: property
+2023-08-10 10:08:48,105 - INFO - Added attribute node: 名称: Override0
+2023-08-10 10:08:48,105 - INFO - Added attribute node: value: organic
+2023-08-10 10:08:48,105 - INFO - Added attribute node: param1: metalstaborganic
+2023-08-10 10:08:48,105 - INFO - Added tree node: property
+2023-08-10 10:08:48,105 - INFO - Added attribute node: class: GrazeSounds
+2023-08-10 10:08:48,105 - INFO - Added tree node: property
+2023-08-10 10:08:48,105 - INFO - Added attribute node: 名称: Override0
+2023-08-10 10:08:48,105 - INFO - Added attribute node: value: organic
+2023-08-10 10:08:48,105 - INFO - Added attribute node: param1: metalgrazeorganic
+2023-08-10 10:08:48,105 - INFO - Added tree node: effect_group
+2023-08-10 10:08:48,105 - INFO - Added attribute node: 名称: meleeWpnBladeT1CandyKnife
+2023-08-10 10:08:48,105 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,105 - INFO - Added attribute node: 名称: AttacksPerMinute
+2023-08-10 10:08:48,105 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,105 - INFO - Added attribute node: value: 120
+2023-08-10 10:08:48,105 - INFO - Added attribute node: tags: perkDeepCuts,perkFlurryOfAgility
+2023-08-10 10:08:48,106 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,106 - INFO - Added attribute node: 名称: StaminaLoss
+2023-08-10 10:08:48,106 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,106 - INFO - Added attribute node: value: 8.2
+2023-08-10 10:08:48,106 - INFO - Added attribute node: tags: primary
+2023-08-10 10:08:48,106 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,106 - INFO - Added attribute node: 名称: DegradationMax
+2023-08-10 10:08:48,106 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,106 - INFO - Added attribute node: value: 462,1200
+2023-08-10 10:08:48,106 - INFO - Added attribute node: tier: 1,6
+2023-08-10 10:08:48,106 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,106 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,106 - INFO - Added attribute node: 名称: DegradationPerUse
+2023-08-10 10:08:48,106 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,106 - INFO - Added attribute node: value: 1
+2023-08-10 10:08:48,106 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,106 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,106 - INFO - Added attribute node: 名称: MaxRange
+2023-08-10 10:08:48,106 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,107 - INFO - Added attribute node: value: 2.0
+2023-08-10 10:08:48,107 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,107 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,107 - INFO - Added attribute node: 名称: BlockRange
+2023-08-10 10:08:48,107 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,107 - INFO - Added attribute node: value: 2.5
+2023-08-10 10:08:48,107 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,107 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,107 - INFO - Added attribute node: 名称: ModSlots
+2023-08-10 10:08:48,107 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,107 - INFO - Added attribute node: value: 2,2,2,3,3,4
+2023-08-10 10:08:48,107 - INFO - Added attribute node: tier: 1,2,3,4,5,6
+2023-08-10 10:08:48,107 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,107 - INFO - Added attribute node: 名称: ModPowerBonus
+2023-08-10 10:08:48,107 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,107 - INFO - Added attribute node: value: .10
+2023-08-10 10:08:48,108 - INFO - Added attribute node: tags: EntityDamage,BlockDamage
+2023-08-10 10:08:48,108 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,108 - INFO - Added attribute node: 名称: ModPowerBonus
+2023-08-10 10:08:48,108 - INFO - Added attribute node: operation: base_add
+2023-08-10 10:08:48,108 - INFO - Added attribute node: value: 300
+2023-08-10 10:08:48,108 - INFO - Added attribute node: tags: EconomicValue
+2023-08-10 10:08:48,108 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,108 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,108 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,108 - INFO - Added attribute node: value: 12
+2023-08-10 10:08:48,108 - INFO - Added attribute node: tags: perkDeepCuts,knife
+2023-08-10 10:08:48,108 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,108 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,108 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,108 - INFO - Added attribute node: value: -.04,.04
+2023-08-10 10:08:48,108 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,108 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,109 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,109 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,109 - INFO - Added attribute node: value: .1,.5
+2023-08-10 10:08:48,109 - INFO - Added attribute node: tier: 2,6
+2023-08-10 10:08:48,109 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,109 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,109 - INFO - Added attribute node: 名称: BlockDamage
+2023-08-10 10:08:48,109 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,109 - INFO - Added attribute node: value: 6.5
+2023-08-10 10:08:48,109 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,109 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,109 - INFO - Added attribute node: 名称: BlockDamage
+2023-08-10 10:08:48,109 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,109 - INFO - Added attribute node: value: -.04,.04
+2023-08-10 10:08:48,109 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,109 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,109 - INFO - Added attribute node: 名称: BlockDamage
+2023-08-10 10:08:48,109 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,109 - INFO - Added attribute node: value: .1,.5
+2023-08-10 10:08:48,110 - INFO - Added attribute node: tier: 2,6
+2023-08-10 10:08:48,110 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,110 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,110 - INFO - Added attribute node: 名称: DamageModifier
+2023-08-10 10:08:48,110 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,110 - INFO - Added attribute node: value: -.8
+2023-08-10 10:08:48,110 - INFO - Added attribute node: tags: earth
+2023-08-10 10:08:48,110 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,110 - INFO - Added attribute node: 名称: DamageModifier
+2023-08-10 10:08:48,110 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,110 - INFO - Added attribute node: value: -.8
+2023-08-10 10:08:48,110 - INFO - Added attribute node: tags: stone
+2023-08-10 10:08:48,110 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,110 - INFO - Added attribute node: 名称: DamageModifier
+2023-08-10 10:08:48,110 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,110 - INFO - Added attribute node: value: -.8
+2023-08-10 10:08:48,110 - INFO - Added attribute node: tags: metal
+2023-08-10 10:08:48,110 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,110 - INFO - Added attribute node: 名称: DamageModifier
+2023-08-10 10:08:48,110 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,110 - INFO - Added attribute node: value: .6
+2023-08-10 10:08:48,110 - INFO - Added attribute node: tags: organic
+2023-08-10 10:08:48,110 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,111 - INFO - Added attribute node: 名称: HarvestCount
+2023-08-10 10:08:48,111 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,111 - INFO - Added attribute node: value: 1
+2023-08-10 10:08:48,111 - INFO - Added attribute node: tags: butcherHarvest
+2023-08-10 10:08:48,111 - INFO - Added tree node: effect_group
+2023-08-10 10:08:48,111 - INFO - Added attribute node: 名称: Power Attack
+2023-08-10 10:08:48,111 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,111 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,111 - INFO - Added attribute node: operation: base_add
+2023-08-10 10:08:48,111 - INFO - Added attribute node: value: 6.7
+2023-08-10 10:08:48,111 - INFO - Added attribute node: tags: secondary
+2023-08-10 10:08:48,111 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,111 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,111 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,111 - INFO - Added attribute node: value: 1
+2023-08-10 10:08:48,111 - INFO - Added attribute node: tags: secondary
+2023-08-10 10:08:48,111 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,111 - INFO - Added attribute node: 名称: BlockDamage
+2023-08-10 10:08:48,111 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,112 - INFO - Added attribute node: value: 1
+2023-08-10 10:08:48,112 - INFO - Added attribute node: tags: secondary
+2023-08-10 10:08:48,112 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,112 - INFO - Added attribute node: 名称: AttacksPerMinute
+2023-08-10 10:08:48,112 - INFO - Added attribute node: operation: base_add
+2023-08-10 10:08:48,112 - INFO - Added attribute node: value: -60
+2023-08-10 10:08:48,112 - INFO - Added attribute node: tags: secondary
+2023-08-10 10:08:48,112 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,112 - INFO - Added attribute node: 名称: StaminaLoss
+2023-08-10 10:08:48,112 - INFO - Added attribute node: operation: base_set
+2023-08-10 10:08:48,112 - INFO - Added attribute node: value: 12.3
+2023-08-10 10:08:48,112 - INFO - Added attribute node: tags: secondary
+2023-08-10 10:08:48,112 - INFO - Added tree node: effect_group
+2023-08-10 10:08:48,112 - INFO - Added attribute node: 名称: sneak damage bonus
+2023-08-10 10:08:48,112 - INFO - Added tree node: requirement
+2023-08-10 10:08:48,112 - INFO - Added attribute node: 名称: CVarCompare
+2023-08-10 10:08:48,112 - INFO - Added attribute node: cvar: _crouching
+2023-08-10 10:08:48,112 - INFO - Added attribute node: operation: Equals
+2023-08-10 10:08:48,113 - INFO - Added attribute node: value: 1
+2023-08-10 10:08:48,113 - INFO - Added tree node: requirement
+2023-08-10 10:08:48,113 - INFO - Added attribute node: 名称: CVarCompare
+2023-08-10 10:08:48,113 - INFO - Added attribute node: cvar: _notAlerted
+2023-08-10 10:08:48,113 - INFO - Added attribute node: operation: GT
+2023-08-10 10:08:48,113 - INFO - Added attribute node: value: 0
+2023-08-10 10:08:48,113 - INFO - Added attribute node: target: other
+2023-08-10 10:08:48,113 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,113 - INFO - Added attribute node: 名称: DamageBonus
+2023-08-10 10:08:48,113 - INFO - Added attribute node: operation: base_add
+2023-08-10 10:08:48,113 - INFO - Added attribute node: value: 4
+2023-08-10 10:08:48,113 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,113 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,113 - INFO - Added attribute node: operation: perc_add
+2023-08-10 10:08:48,113 - INFO - Added attribute node: value: 4
+2023-08-10 10:08:48,113 - INFO - Added attribute node: tags: perkDeepCuts
+2023-08-10 10:08:48,113 - INFO - Added tree node: display_value
+2023-08-10 10:08:48,113 - INFO - Added attribute node: 名称: dEntityDamageSneak
+2023-08-10 10:08:48,113 - INFO - Added attribute node: value: 4
+2023-08-10 10:08:48,114 - INFO - Added tree node: effect_group
+2023-08-10 10:08:48,114 - INFO - Added attribute node: 名称: corpseRemoval
+2023-08-10 10:08:48,114 - INFO - Added tree node: requirement
+2023-08-10 10:08:48,114 - INFO - Added attribute node: 名称: !IsAlive
+2023-08-10 10:08:48,114 - INFO - Added attribute node: target: other
+2023-08-10 10:08:48,114 - INFO - Added tree node: requirement
+2023-08-10 10:08:48,114 - INFO - Added attribute node: 名称: EntityTagCompare
+2023-08-10 10:08:48,114 - INFO - Added attribute node: target: other
+2023-08-10 10:08:48,114 - INFO - Added attribute node: tags: walker,crawler,spider
+2023-08-10 10:08:48,114 - INFO - Added tree node: passive_effect
+2023-08-10 10:08:48,114 - INFO - Added attribute node: 名称: EntityDamage
+2023-08-10 10:08:48,114 - INFO - Added attribute node: operation: base_add
+2023-08-10 10:08:48,114 - INFO - Added attribute node: value: 500
+2023-08-10 10:08:48,789 - INFO - 点击了树状图中的一个节点
+2023-08-10 10:08:48,790 - INFO - 选中了节点 item
+2023-08-10 10:08:49,386 - INFO - 选择的节点完整路径: item
+2023-08-10 10:08:49,386 - INFO - 文件路径: D:/.game/steam/steamapps/common/7 Days To Die/Data/Config/items.xml
+2023-08-10 10:08:49,420 - INFO - {1: ['items'], 2: ['items/item'], 3: ['items/item/property', 'items/item/effect_group', 'items/item/Property'], 4: ['items/item/property/property', 'items/item/effect_group/triggered_effect', 'items/item/property/requirement', 'items/item/effect_group/requirement', 'items/item/effect_group/display_value', 'items/item/effect_group/passive_effect'], 5: ['items/item/property/property/property', 'items/item/effect_group/passive_effect/requirement', 'items/item/effect_group/triggered_effect/requirement']}
+2023-08-10 10:08:49,420 - INFO - 开始获取level_dict
+2023-08-10 10:08:49,420 - INFO - key:1, value:['items']
+2023-08-10 10:08:49,423 - INFO - key:2, value:['items/item']
+2023-08-10 10:08:49,423 - INFO - key:3, value:['items/item/property', 'items/item/effect_group', 'items/item/Property']
+2023-08-10 10:08:49,424 - INFO - key:4, value:['items/item/property/property', 'items/item/effect_group/triggered_effect', 'items/item/property/requirement', 'items/item/effect_group/requirement', 'items/item/effect_group/display_value', 'items/item/effect_group/passive_effect']
+2023-08-10 10:08:49,424 - INFO - key:5, value:['items/item/property/property/property', 'items/item/effect_group/passive_effect/requirement', 'items/item/effect_group/triggered_effect/requirement']
+2023-08-10 10:08:49,424 - INFO - widgets:[<PyQt5.QtWidgets.QListWidget object at 0x000001F4F9CA93F0>, <PyQt5.QtWidgets.QListWidget object at 0x000001F4F9CAA560>, <PyQt5.QtWidgets.QListWidget object at 0x000001F4F9CAA5F0>, <PyQt5.QtWidgets.QListWidget object at 0x000001F4F9CAA680>, <PyQt5.QtWidgets.QListWidget object at 0x000001F4F9CAA710>]
+2023-08-10 10:08:49,424 - INFO - widget:<PyQt5.QtWidgets.QListWidget object at 0x000001F4F9CA93F0>
