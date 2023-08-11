@@ -3,12 +3,12 @@ import logging
 import re
 import xml.etree.ElementTree as ET
 
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QStandardItem, QStandardItemModel
-from PyQt5.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
+from PySide6 import QtWidgets, QtCore
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QStandardItem, QStandardItemModel, QAction
+from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
                              QLineEdit, QGroupBox, QListWidgetItem, QDialogButtonBox, QLayout)
-from PyQt5.QtWidgets import QFileDialog, QListWidget, QTextEdit, QMainWindow, QSplitter, \
+from PySide6.QtWidgets import QFileDialog, QListWidget, QTextEdit, QMainWindow, QSplitter, \
     QTreeView, QWidget, QErrorMessage
 
 from Alart_class import AlertWindows
@@ -136,106 +136,85 @@ def xml_to_tree(parent, xml_element):
 
 # 定义一个 ModEditor 类，用来封装我们的应用
 class ModEditor(QMainWindow):
-    # __init__ 方法会在创建 ModEditor 对象时被调用
     def __init__(self):
-        # 调用父类的初始化方法
         super().__init__()
 
-        # 初始化一些变量
+        # 初始化变量
         self.file_path = ""
         self.selected_node_full_path = ""
 
-        # 设置窗口的标题
+        # 设置窗口标题
         self.setWindowTitle("七日杀 Mod 编辑器")
 
-        # 创建一个列表框用于显示所有的物品名称
-        self.item_listbox = QListWidget()
-
-        # 创建一个文本编辑器，设置每个制表符的宽度为40像素
-        self.text_editor = QTextEdit()
-        self.text_editor.setTabStopDistance(40)
-
-        # 创建一个搜索框
+        # 1. 创建左侧搜索框和物品列表
         self.search_entry = QLineEdit()
-
-        # 创建一个标签、输入框和按钮，用于设置文本编辑器的缩进宽度
-        self.indent_label = QLabel('设置文本框缩进')
-        self.indent_input = QLineEdit()
-        self.indent_button = QPushButton('确定')
-
-        # 创建一个布局，用来存放标签、输入框和按钮，QHBoxLayout 表示水平布局
-        self.indent_layout = QHBoxLayout()
-        self.indent_layout.addWidget(self.indent_label)
-        self.indent_layout.addWidget(self.indent_input)
-        self.indent_layout.addWidget(self.indent_button)
-
-        # 将设置缩进的部分放到一个 QWidget 中
-        self.indent_widget = QWidget()
-        self.indent_widget.setLayout(self.indent_layout)
-
-        # 创建显示和隐藏设置的按钮
-        self.show_button = QPushButton("显示设置")
-        self.show_button.clicked.connect(self.show_settings)
-        self.hide_button = QPushButton("隐藏设置")
-        self.hide_button.clicked.connect(self.hide_settings)
-
-        # 创建一个布局，用来存放搜索框和列表框
+        self.item_listbox = QListWidget()
         self.list_layout = QVBoxLayout()
         self.list_layout.addWidget(self.search_entry)
         self.list_layout.addWidget(self.item_listbox)
-
-        # 创建一个 QSplitter，这样我们可以在左侧放置列表框，在右侧放置文本编辑器和树状图
-        self.splitter = QSplitter(QtCore.Qt.Horizontal)
         list_widget = QtWidgets.QWidget()
         list_widget.setLayout(self.list_layout)
-        self.splitter.addWidget(list_widget)
 
-        # 创建一个 QSplitter，这样我们可以在文本编辑器和树状图之间调整大小
+        # 2. 创建文本编辑器
+        self.text_editor = QTextEdit()
+        self.text_editor.setTabStopDistance(40)
         self.editor_splitter = QSplitter(QtCore.Qt.Vertical)
         self.editor_splitter.addWidget(self.text_editor)
 
-        # 创建一个树状图和一个数据模型
+        # 3. 创建树状图
         self.tree_view = QTreeView()
         self.tree_model = QStandardItemModel()
         self.tree_view.setModel(self.tree_model)
         self.editor_splitter.addWidget(self.tree_view)
 
-        # 创建一个按钮用于选择树节点
+        # 4. 创建选择按钮
         self.select_button = QPushButton('选择')
         self.select_button.clicked.connect(self.select_tree_item)
-
-        # 创建一个垂直布局，添加设置缩进的部件和文本编辑器和树状图的分割器
-        self.qvbox_layout = QVBoxLayout()
-        self.qvbox_layout.addWidget(self.indent_widget)
-        self.qvbox_layout.addWidget(self.editor_splitter)
-        # 在布局中添加选择按钮
         self.editor_splitter.addWidget(self.select_button)
 
-        # 创建一个 QWidget，设置其布局为刚刚创建的垂直布局
+        # 5. 创建缩进设置部分
+        self.indent_label = QLabel('设置文本框缩进')
+        self.indent_input = QLineEdit()
+        self.indent_button = QPushButton('确定')
+        self.indent_layout = QHBoxLayout()
+        self.indent_layout.addWidget(self.indent_label)
+        self.indent_layout.addWidget(self.indent_input)
+        self.indent_layout.addWidget(self.indent_button)
+        self.indent_widget = QWidget()
+        self.indent_widget.setLayout(self.indent_layout)
+
+        # 6.1. 创建显示/隐藏设置的按钮，并设置每行2个字符
+        self.show_button = QPushButton("显示\n设置")
+        self.show_button.clicked.connect(self.show_settings)
+        self.hide_button = QPushButton("隐藏\n设置")
+        self.hide_button.clicked.connect(self.hide_settings)
+        self.show_button.setStyleSheet("padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px;")
+        self.hide_button.setStyleSheet("padding-left: 5px; padding-right: 5px; padding-top: 0px; padding-bottom: 0px;")
+        # 6.2. 创建一个垂直布局，添加显示和隐藏按钮，并设置其对齐方式为顶部对齐
+        self.show_hide_button_layout = QVBoxLayout()
+        self.show_hide_button_layout.addWidget(self.show_button)
+        self.show_hide_button_layout.addWidget(self.hide_button)
+        self.show_hide_button_layout.setAlignment(QtCore.Qt.AlignTop)
+
+        # 7. 组装主布局
+        self.qvbox_layout = QVBoxLayout()
+        self.qvbox_layout.addWidget(self.indent_widget)
+        self.qvbox_layout.addWidget(self.editor_splitter)   # 将编辑器和树状图组合到一起，放在一个垂直布局<--qvbox_layout>中
         self.editor_widget = QtWidgets.QWidget()
-        self.editor_widget.setLayout(self.qvbox_layout)
+        self.editor_widget.setLayout(self.qvbox_layout)     # 将垂直布局<--qvbox_layout>放在一个窗口部件<--editor_widget>中
 
-        # 在 QSplitter - splitter 中添加文本编辑器和树状图
-        self.splitter.addWidget(self.editor_widget)
-
-        # 创建一个 QWidget，设置其布局为按钮和设置部分
-        self.setting_widget = QtWidgets.QWidget()
+        # 8. 创建设置部分的布局
         self.setting_layout = QVBoxLayout()
-        self.setting_layout.addWidget(self.show_button)
-        self.setting_layout.addWidget(self.hide_button)
+        self.setting_layout.addLayout(self.show_hide_button_layout)
         self.setting_layout.addWidget(self.indent_widget)
+        self.setting_widget = QtWidgets.QWidget()
         self.setting_widget.setLayout(self.setting_layout)
 
-        # 创建一个 QSplitter，这样我们可以在左侧放置设置部分，在右侧放置其他部分
         self.main_splitter = QSplitter(QtCore.Qt.Horizontal)
         self.main_splitter.addWidget(self.setting_widget)
-        self.main_splitter.addWidget(self.splitter)
+        self.main_splitter.addWidget(list_widget)
+        self.main_splitter.addWidget(self.editor_widget)    # 将设置部分、左侧的搜索框和物品列表和右侧的编辑器组合到一起，放在一个水平布局<--main_splitter>中
 
-        # 3. 创建新的部件
-        self.right_panel = QWidget()
-        self.right_layout = QVBoxLayout(self.right_panel)
-
-        # 设置主窗口布局
         self.main_widget = QtWidgets.QWidget()
         self.setCentralWidget(self.main_widget)
         layout = QHBoxLayout(self.main_widget)
@@ -279,7 +258,7 @@ class ModEditor(QMainWindow):
         file_menu = menu_bar.addMenu('文件')
 
         # 在“文件”菜单中添加一个“导入”菜单项，triggered 参数指定了点击菜单项时调用的函数
-        open_action = QtWidgets.QAction('导入', self)
+        open_action = QAction('导入', self)
         open_action.triggered.connect(self.open_file)
         file_menu.addAction(open_action)
 
@@ -860,7 +839,8 @@ class NodeSelectionDialog(QDialog):
         # 遍历每个条目
         for index in range(list_widget.count()):
             item = list_widget.item(index)
-            width = font_metrics.width(item.text())
+            width = font_metrics.horizontalAdvance(item.text())
+            # width = font_metrics.width(item.text()) # 弃用的方法
             if width > max_width:
                 max_width = width
                 logger.debug(f"新的最大宽度为: {max_width}, 来自条目: {item.text()}")
