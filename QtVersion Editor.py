@@ -1,13 +1,14 @@
 # 导入所需的库
 import logging
 import re
+import time
 import xml.etree.ElementTree as ET
 
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem, QStandardItemModel, QAction
 from PySide6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
-                             QLineEdit, QGroupBox, QListWidgetItem, QDialogButtonBox, QLayout)
+                               QLineEdit, QGroupBox, QListWidgetItem, QDialogButtonBox, QLayout, QGraphicsView)
 from PySide6.QtWidgets import QFileDialog, QListWidget, QTextEdit, QMainWindow, QSplitter, \
     QTreeView, QWidget, QErrorMessage
 
@@ -80,6 +81,19 @@ def find_items_in_layout_recursive(layout, item_type=None):
 
 # 定义一个函数，用于将 XML 元素转换为树节点
 def xml_to_tree(parent, xml_element):
+    """
+    将给定的XML元素及其子元素转换为树节点，添加到给定的父节点中。
+
+    :param parent: QStandardItem，父树节点，新的树节点将作为其子节点
+    :param xml_element: Element，当前要转换的XML元素
+
+    1. 从XML元素的标签创建新的树节点，并将其添加到父节点。
+    2. 创建一个字典来存储节点的类型、标签和属性，然后将字典存储为节点的自定义数据。
+    3. 遍历XML元素的属性，并为每个属性创建新的树节点，作为新节点的子节点。每个属性节点都存储一个包含类型、名称和值的字典。
+    4. 递归地调用此函数来处理XML元素的子元素。
+
+    通过此函数，整个XML结构将被转换为一个树状图，其中每个XML元素和属性都由树节点表示。
+    """
     # Logging the function parameters
     logger.debug(f"Called xml_to_tree with parent: {parent}, xml_element tag: {xml_element.tag}")
 
@@ -283,6 +297,32 @@ class ModEditor(QMainWindow):
         self.show_hide_button_layout.addWidget(self.hide_button)
         self.show_hide_button_layout.setAlignment(QtCore.Qt.AlignTop)
 
+    def create_search_and_item_list_layout(self):
+        self.search_entry = QLineEdit()
+        self.item_listbox = QListWidget()
+        self.list_layout = QVBoxLayout()
+        self.list_layout.addWidget(self.search_entry)
+        self.list_layout.addWidget(self.item_listbox)
+        self.list_widget = QtWidgets.QWidget()
+        self.list_widget.setLayout(self.list_layout)
+
+    def create_setting_layout(self):
+        self.setting_layout = QVBoxLayout()
+        self.setting_layout.addLayout(self.show_hide_button_layout)
+        self.setting_layout.addWidget(self.indent_widget)
+        self.setting_widget = QtWidgets.QWidget()
+        self.setting_widget.setLayout(self.setting_layout)
+
+    def create_editor_layout(self):
+        self.qvbox_layout = QVBoxLayout()
+        self.qvbox_layout.addWidget(self.indent_widget)
+        self.qvbox_layout.addWidget(self.editor_splitter)
+        self.editor_widget = QtWidgets.QWidget()
+        self.editor_widget.setLayout(self.qvbox_layout)
+
+    def create_node_canvas(self):
+        self.node_canvas = QGraphicsView()
+
     def assemble_main_layout(self):
         """
         组装主布局：本方法用于组装整个应用程序窗口的主要布局部分。
@@ -304,27 +344,22 @@ class ModEditor(QMainWindow):
                     - 文本编辑器（QTextEdit）
                     - 树状图（QTreeView）
         """
-        self.setting_layout = QVBoxLayout()
-        self.setting_layout.addLayout(self.show_hide_button_layout)
-        self.setting_layout.addWidget(self.indent_widget)
-        self.setting_widget = QtWidgets.QWidget()
-        self.setting_widget.setLayout(self.setting_layout)
 
-        self.qvbox_layout = QVBoxLayout()
-        self.qvbox_layout.addWidget(self.indent_widget)
-        self.qvbox_layout.addWidget(self.editor_splitter)  # 将编辑器和树状图组合到一起，放在一个垂直布局<--qvbox_layout>中
-        self.editor_widget = QtWidgets.QWidget()
-        self.editor_widget.setLayout(self.qvbox_layout)  # 将垂直布局<--qvbox_layout>放在一个窗口部件<--editor_widget>中
+        self.create_setting_layout()
+        self.create_editor_layout()
+        self.create_search_and_item_list_layout()
+        self.create_node_canvas()
 
         self.main_splitter = QSplitter(QtCore.Qt.Horizontal)
         self.main_splitter.addWidget(self.setting_widget)
-        self.main_splitter.addWidget(self.list_widget)  # 注意这里是list_widget，不是list_layout
-        self.main_splitter.addWidget(self.editor_widget)  # 将设置部分、左侧的搜索框和物品列表和右侧的编辑器组合到一起，放在一个水平布局<--main_splitter>中
+        self.main_splitter.addWidget(self.list_widget)
+        self.main_splitter.addWidget(self.editor_widget)
+        self.main_splitter.addWidget(self.node_canvas)
 
         self.main_widget = QtWidgets.QWidget()
         self.setCentralWidget(self.main_widget)
-        layout = QHBoxLayout(self.main_widget)
-        layout.addWidget(self.main_splitter)
+        self.layout = QHBoxLayout(self.main_widget)
+        self.layout.addWidget(self.main_splitter)
 
     def start_modify_mod(self, return_text):
         #
@@ -437,6 +472,21 @@ class ModEditor(QMainWindow):
 
     # 创建一个新的方法来加载文件
     def load_file(self, filename):
+        """
+        加载指定的XML文件并解析其内容，将感兴趣的属性值添加到列表和字典中。
+
+        :param filename: 要加载的XML文件的路径
+
+        1. 使用ElementTree解析XML文件，获取根元素。
+        2. 清空存储物品名称和XML数据的列表和字典。
+        3. 定义一个存储感兴趣的属性名称的列表。
+        4. 定义一个递归函数来遍历XML的每个节点。如果节点具有感兴趣的属性，则将该属性的值添加到列表和字典中。
+        5. 调用递归函数来处理根节点，从而处理整个XML结构。
+        6. 更新列表框以显示新加载的项。
+        7. 如果加载成功，则将文件路径存储在self.file_path中。
+
+        如果在解析过程中出现错误，将显示一个错误对话框。
+        """
         logger.info("开始加载文件: %s", filename)
 
         try:
@@ -453,19 +503,45 @@ class ModEditor(QMainWindow):
             interested_attributes = ['name', 'id', 'file', 'key', 'xpath']
 
             # 递归函数，用于遍历XML文件中的每个节点
-            def process_node(node):
+            def process_node(root_node, depth=0):
+                """
+                递归函数，用于遍历XML文件中的每个节点，并处理我们感兴趣的属性。
+
+                :param root_node: 要处理的当前XML节点
+                :param depth: 当前节点的深度，用于控制缩进
+
+                1. 遍历当前节点中的我们感兴趣的属性。
+                2. 将属性值（具有适当缩进）添加到列表中，并将当前节点的XML字符串存储在字典中，键为属性值。
+                3. 递归地对当前节点的每个子节点调用此函数，从而处理整个XML结构的每个节点。
+                """
+
+                # 计算当前深度的缩进
+                indent = " " * ((depth-1) * 4)
+
+                # 遍历我们感兴趣的属性
                 for attr in interested_attributes:
-                    value = node.get(attr)
-                    if value and value not in self.items:  # To ensure no duplicates
-                        self.items.append(value)
-                        self.item_xmls[value] = ET.tostring(node, encoding='unicode')
+                    # 从当前节点获取属性值
+                    value = root_node.get(attr)
+
+                    # 如果属性值存在，将其添加到物品列表中
+                    if value:
+                        # 将属性值（具有适当缩进）添加到物品列表中
+                        self.items.append(indent + value)
+
+                        # 将当前节点的XML字符串存储在字典中，键为属性值
+                        self.item_xmls[value] = ET.tostring(root_node, encoding='unicode')
+
+                        # 记录添加到列表中的属性和值
                         logger.debug(f"添加了 {attr}: {value} 到列表中")
 
-                # 递归处理每个子节点
-                for child in node:
-                    process_node(child)
+                # 递归处理当前节点的每个子节点，并增加深度
+                for child in root_node:
+                    process_node(child, depth + 1)
 
             process_node(root)
+
+            logger.debug(f"物品列表: {self.items}")
+            logger.debug(f"物品XML字典: {self.item_xmls}")
 
             # 更新列表框
             self.update_listbox()
@@ -506,40 +582,64 @@ class ModEditor(QMainWindow):
             logger.warning("用户未选择文件")
 
     def search_items(self):
+        """
+        搜索物品：本方法用于根据搜索框中的文本搜索物品名称，并在列表框中显示匹配的物品。
+
+        1. 获取搜索框中的文本，以便我们可以根据这个文本来搜索物品。
+        2. 清空列表框，以便我们可以重新填充它。
+        3. 通过列表推导，从物品列表中选出包含搜索文本的物品名称。
+        4. 将所有匹配的物品名称添加到列表框中。
+        5. 记录找到的匹配物品的数量。
+        """
+
         # 获取搜索框中的文本
         search_text = self.search_entry.text()
         logger.debug("搜索框中的文本为: %s", search_text)
 
-        # 清空列表框
+        # 清空列表框，以便重新填充
         self.item_listbox.clear()
 
-        # 添加所有包含搜索文本的物品名称到列表框中
+        # 使用列表推导从物品列表中选出包含搜索文本的物品名称
         matched_items = [item for item in self.items if search_text.lower() in item.lower()]
+
+        # 将所有匹配的物品名称添加到列表框中
         for item in matched_items:
             self.item_listbox.addItem(item)
 
+        # 记录找到的匹配物品的数量
         logger.info("找到 %d 个匹配的物品", len(matched_items))
 
     # show_item_xml 方法会在用户在列表框中选择一个物品时被调用
     def show_item_xml(self):
+        """
+        显示物品的XML内容：当用户在列表框中选择一个物品时，本方法用于显示所选物品的XML内容。
+
+        1. 记录开始显示选中物品的XML内容。
+        2. 获取选中的物品名称，以便我们可以查找相应的XML。
+        3. 从字典中获取物品的XML。如果没有找到，将记录一条警告并返回。
+        4. 在文本编辑器中显示物品的XML，使用户可以查看和编辑。
+        5. 将物品的XML显示在树状图中，以可视化方式呈现XML结构。
+        """
+
         logger.info("开始显示选中的物品的XML内容")
 
         # 获取选中的物品名称
-        item_name = self.item_listbox.currentItem().text()
+        item_name = self.item_listbox.currentItem().text().strip()
         logger.debug("选中的物品名称为: %s", item_name)
 
-        # 获取物品的 XML
+        # 从字典中获取物品的XML
         item_xml = self.item_xmls.get(item_name, "")
 
+        # 如果没有找到XML，记录警告并返回
         if not item_xml:
             logger.warning("未找到 %s 的 XML 内容", item_name)
             return
 
-        # 显示物品的 XML 在文本编辑器中
+        # 在文本编辑器中显示物品的XML，使用户可以查看和编辑
         self.text_editor.setText(item_xml)
         logger.debug("物品的XML已加载到文本编辑器中")
 
-        # 将物品的 XML 显示在树状图中
+        # 将物品的XML显示在树状图中，以可视化方式呈现XML结构
         self.tree_model.clear()
         root = ET.fromstring(item_xml)
         xml_to_tree(self.tree_model.invisibleRootItem(), root)
