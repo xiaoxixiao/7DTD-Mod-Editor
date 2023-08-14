@@ -1,7 +1,7 @@
 import logging
 import re
 
-import PySide6
+
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPalette, QColor, QStandardItemModel, QStandardItem, QBrush
 from PySide6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QFileDialog, \
@@ -279,7 +279,7 @@ class XPathSelector(QMainWindow):
                 if url.fileName().endswith(".xml"):
                     event.acceptProposedAction()  # 接受拖入文件
 
-    def dropEvent(self, event: PySide6.QtGui.QDropEvent) -> None:
+    def dropEvent(self, event) -> None:
         logger.debug("放下文件")
         # 判断拖入的文件是否是xml文件
         if event.mimeData().hasUrls():
