@@ -48,8 +48,8 @@ class XPathSelector(QMainWindow):
         # 设置主部件的自动填充背景
         self.main_widget.setAutoFillBackground(True)
         self.setCentralWidget(self.main_widget)  # 设置主窗口的主部件为主窗口的中心部件
-        self.主布局 = QVBoxLayout()  # 创建主窗口的主部件的主布局为垂直布局
-        self.main_widget.setLayout(self.主布局)  # 设置主窗口的布局为垂直布局
+        self.main_layout = QVBoxLayout()  # 创建主窗口的主部件的主布局为垂直布局
+        self.main_widget.setLayout(self.main_layout)  # 设置主窗口的布局为垂直布局
 
         # 创建一个横向布局
         self.h_layout = QHBoxLayout()
@@ -65,18 +65,18 @@ class XPathSelector(QMainWindow):
         self.main_widget.setAutoFillBackground(True)
 
         # 向h_layout中添加按钮
-        self.刷新按钮 = QPushButton("刷新")
-        self.选择文件按钮 = QPushButton("选择文件")
-        self.h_layout.addWidget(self.刷新按钮)
-        self.h_layout.addWidget(self.选择文件按钮)
+        self.refresh_button = QPushButton("刷新")
+        self.select_file_button = QPushButton("选择文件")
+        self.h_layout.addWidget(self.refresh_button)
+        self.h_layout.addWidget(self.select_file_button)
         # 绑定按钮的点击事件
-        self.选择文件按钮.clicked.connect(self.选择文件事件)
-        self.刷新按钮.clicked.connect(self.刷新事件)
+        self.select_file_button.clicked.connect(self.select_file_event)
+        self.refresh_button.clicked.connect(self.refresh_event)
         # 按钮下添加一个标签
-        self.标签文本 = QLabel()
-        self.h_layout.addWidget(self.标签文本)
+        self.label_text = QLabel()
+        self.h_layout.addWidget(self.label_text)
         # 设置标签的文本
-        self.标签文本.setText("文件路径：")
+        self.label_text.setText("文件路径：")
 
         # 在横向布局下面创建一个纵向布局
         self.v_layout = QVBoxLayout()
@@ -88,57 +88,58 @@ class XPathSelector(QMainWindow):
         self.tree.clicked.connect(self.tree_item_clicked)
 
         # 创建一个纵向布局，将横向布局和纵向布局添加到里面
-        self.纵_左侧xpath选择器 = QVBoxLayout()
-        self.纵_左侧xpath选择器.addLayout(self.h_layout)
-        self.纵_左侧xpath选择器.addLayout(self.v_layout)
+        self.vertical_left_xpath_selector = QVBoxLayout()
+        self.vertical_left_xpath_selector.addLayout(self.h_layout)
+        self.vertical_left_xpath_selector.addLayout(self.v_layout)
 
         # 创建一个标签
-        self.标签文本_代码编辑区 = QLabel()
-        self.标签文本_代码编辑区.setText("xpath路径：")
-        self.标签文本2_代码编辑区 = QLabel()
-        self.标签文本2_代码编辑区.setText("选择你的Xpath编辑模版（点击一下会用上面的xpath路径作为模板添加进去：")
+        self.Label_Text_Code_Editing_Area = QLabel()
+        self.Label_Text_Code_Editing_Area.setText("xpath路径：")
+        self.Label_text_2_code_editing_area = QLabel()
+        self.Label_text_2_code_editing_area.setText(
+            "选择你的Xpath编辑模版（点击一下会用上面的xpath路径作为模板添加进去：")
         # 创建一个横向布局的按钮组
-        self.横_代码编辑区_按钮组 = QHBoxLayout()
-        self.xpath_set模板按钮 = QPushButton("set")
-        self.xpath_append模块按钮 = QPushButton("append")
-        self.xpath_remove模块按钮 = QPushButton("remove")
-        self.横_代码编辑区_按钮组.addWidget(self.xpath_set模板按钮)
-        self.横_代码编辑区_按钮组.addWidget(self.xpath_append模块按钮)
-        self.横_代码编辑区_按钮组.addWidget(self.xpath_remove模块按钮)
-        self.xpath_set模板按钮.clicked.connect(self.set_xpath_set模板)
-        self.xpath_append模块按钮.clicked.connect(self.set_xpath_append模块)
-        self.xpath_remove模块按钮.clicked.connect(self.set_xpath_remove模块)
+        self.Horizontal_code_editing_area_button_group = QHBoxLayout()
+        self.xpath_set_template_button = QPushButton("set")
+        self.xpath_append_module_button = QPushButton("append")
+        self.xpath_remove_module_button = QPushButton("remove")
+        self.Horizontal_code_editing_area_button_group.addWidget(self.xpath_set_template_button)
+        self.Horizontal_code_editing_area_button_group.addWidget(self.xpath_append_module_button)
+        self.Horizontal_code_editing_area_button_group.addWidget(self.xpath_remove_module_button)
+        self.xpath_set_template_button.clicked.connect(self.set_xpath_set模板)
+        self.xpath_append_module_button.clicked.connect(self.set_xpath_append模块)
+        self.xpath_remove_module_button.clicked.connect(self.set_xpath_remove模块)
         # 创建一个文本编辑框
-        self.文本编辑框_代码编辑区 = QTextEdit()
-        self.文本编辑框_代码编辑区.setStyleSheet("background-color: #454545; color: #ffffff;")
+        self.text_edit_box_code_edit_area = QTextEdit()
+        self.text_edit_box_code_edit_area.setStyleSheet("background-color: #454545; color: #ffffff;")
 
         # 创建一个纵向布局
-        self.纵_代码编辑区 = QVBoxLayout()
-        self.纵_代码编辑区.addWidget(self.标签文本_代码编辑区)
-        self.纵_代码编辑区.addWidget(self.标签文本2_代码编辑区)
-        self.纵_代码编辑区.addLayout(self.横_代码编辑区_按钮组)
-        self.纵_代码编辑区.addWidget(self.文本编辑框_代码编辑区)
+        self.vertical_code_editing_area = QVBoxLayout()
+        self.vertical_code_editing_area.addWidget(self.Label_Text_Code_Editing_Area)
+        self.vertical_code_editing_area.addWidget(self.Label_text_2_code_editing_area)
+        self.vertical_code_editing_area.addLayout(self.Horizontal_code_editing_area_button_group)
+        self.vertical_code_editing_area.addWidget(self.text_edit_box_code_edit_area)
 
         # 创建一个分割器
-        self.分割器 = QSplitter(Qt.Horizontal)     # 创建一个分割器，并设置为水平分割
-        self.左侧部分 = QWidget()
-        self.右侧部分 = QWidget()
-        self.左侧部分.setLayout(self.纵_左侧xpath选择器)
-        self.右侧部分.setLayout(self.纵_代码编辑区)
-        self.分割器.addWidget(self.左侧部分)
-        self.分割器.addWidget(self.右侧部分)
+        self.splitter = QSplitter(Qt.Horizontal)  # 创建一个分割器，并设置为水平分割
+        self.left_part = QWidget()
+        self.right_part = QWidget()
+        self.left_part.setLayout(self.vertical_left_xpath_selector)
+        self.right_part.setLayout(self.vertical_code_editing_area)
+        self.splitter.addWidget(self.left_part)
+        self.splitter.addWidget(self.right_part)
 
         # 创建一个标签
-        self.底部标签 = QLabel()
-        self.底部标签.setText("本软件由 泉户 黑崎 开发，仅供学习交流使用，不得用于商业用途！联系方式：QQ：1624910218")
+        self.bottom_label = QLabel()
+        self.bottom_label.setText("本软件由 泉户 黑崎 开发，仅供学习交流使用，不得用于商业用途！联系方式：QQ：1624910218")
         # 设置内外边距
-        self.底部标签.setContentsMargins(10, 10, 10, 10)
+        self.bottom_label.setContentsMargins(10, 10, 10, 10)
 
         # 将分割器添加到主布局中
-        self.主布局.addWidget(self.分割器)
-        self.主布局.addWidget(self.底部标签)
-        self.主布局.setStretch(0, 1)  # 设置分割器的伸缩因子为1
-        self.主布局.setStretch(1, 0)  # 设置底部标签的伸缩因子为0
+        self.main_layout.addWidget(self.splitter)
+        self.main_layout.addWidget(self.bottom_label)
+        self.main_layout.setStretch(0, 1)  # 设置分割器的伸缩因子为1
+        self.main_layout.setStretch(1, 0)  # 设置底部标签的伸缩因子为0
 
     def tree_item_clicked(self, index):
         logger.debug("检测到点击事件")
@@ -148,111 +149,116 @@ class XPathSelector(QMainWindow):
         text = item.text()
         # ========== #
         # 递归获取父项目的文本
-        父项目文本列表: list = []
+        parent_item_text_list: list = []
         i = -1
-        def 获取父项目文本(item, i) -> list:
-            if item.parent() is not None:
-                父项目文本列表.append({i: item.text()})
-                i -= 1
-                return 获取父项目文本(item.parent(), i)
-            if item.parent() is None:
-                父项目文本列表.append({i: item.text()})
-                logger.debug(f"父项目文本列表：{父项目文本列表}")
-                return 父项目文本列表
-        # ========== #
-        父项目文本列表 = 获取父项目文本(item, i)
-        # ========== #
-        def 处理父项目文本列表(父项目文本列表):
-            拼接列表 = []
 
-            def 提取信息(target):
-                tag = 属性 = 值 = ""
+        def get_parent_item_text(item, i) -> list:
+            if item.parent() is not None:
+                parent_item_text_list.append({i: item.text()})
+                i -= 1
+                return get_parent_item_text(item.parent(), i)
+            if item.parent() is None:
+                parent_item_text_list.append({i: item.text()})
+                logger.debug(f"父项目文本列表：{parent_item_text_list}")
+                return parent_item_text_list
+
+        # ========== #
+        parent_item_text_list = get_parent_item_text(item, i)
+
+        # ========== #
+        def handle_the_parent_item_text_list(parent_item_text_list):
+            spliced_list = []
+
+            def extract_information(target):
+                tag = attribute = value = ""
                 if "[@" in target:
-                    匹配对象 = re.search(r'(.*?)\[@(.*?)\](?:=(.*))?', target)
-                    if 匹配对象:
-                        tag, 属性, 值 = 匹配对象.groups()
+                    match_the_object = re.search(r'(.*?)\[@(.*?)\](?:=(.*))?', target)
+                    if match_the_object:
+                        tag, attribute, value = match_the_object.groups()
                 elif "|" in target:
-                    tag, 后部 = [part.strip() for part in target.split("|")]
-                    后部 = 后部.replace("...", "").strip()
-                    if "=" in 后部:
-                        属性, 值 = [part.strip() for part in 后部.split("=")]
+                    tag, after_part = [part.strip() for part in target.split("|")]
+                    after_part = after_part.replace("...", "").strip()
+                    if "=" in after_part:
+                        attribute, value = [part.strip() for part in after_part.split("=")]
                 elif "=" not in target:
                     tag = target.strip()
-                return tag, 属性, 值
+                return tag, attribute, value
 
-            if len(父项目文本列表) > 1:
-                target1 = list(父项目文本列表[0].values())[0]
-                target2 = list(父项目文本列表[1].values())[0]
-                tag1, 属性1, 值1 = 提取信息(target1)
-                tag2, 属性2, 值2 = 提取信息(target2)
+            if len(parent_item_text_list) > 1:
+                target1 = list(parent_item_text_list[0].values())[0]
+                target2 = list(parent_item_text_list[1].values())[0]
+                tag1, attribute_1, value_1 = extract_information(target1)
+                tag2, attribute_2, value_2 = extract_information(target2)
 
-                if tag1 == tag2 and 属性1 == 属性2 and 值1 == 值2:
-                    拼接列表.append(f'{tag1}[@{属性1}]')
+                if tag1 == tag2 and attribute_1 == attribute_2 and value_1 == value_2:
+                    spliced_list.append(f'{tag1}[@{attribute_1}]')
                 elif tag1 == tag2:
-                    拼接列表.append(f'{tag1}[@{属性1}]')
+                    spliced_list.append(f'{tag1}[@{attribute_1}]')
                 else:
-                    拼接列表.append(f'{tag1}[@{属性1}={值1}]')
-                    拼接列表.append(f'{tag2}[@{属性2}={值2}]')
+                    spliced_list.append(f'{tag1}[@{attribute_1}={value_1}]')
+                    spliced_list.append(f'{tag2}[@{attribute_2}={value_2}]')
 
-                for item in 父项目文本列表[2:]:
+                for item in parent_item_text_list[2:]:
                     target = list(item.values())[0]
-                    tag, 属性, 值 = 提取信息(target)
-                    if tag and 属性:
-                        拼接列表.append(f'{tag}[@{属性}={值}]')
+                    tag, attribute, value = extract_information(target)
+                    if tag and attribute:
+                        spliced_list.append(f'{tag}[@{attribute}={value}]')
                     elif tag:
-                        拼接列表.append(tag)
+                        spliced_list.append(tag)
 
             else:
-                for item in 父项目文本列表:
+                for item in parent_item_text_list:
                     target = list(item.values())[0]
-                    tag, 属性, 值 = 提取信息(target)
-                    if tag and 属性:
-                        拼接列表.append(f'{tag}[@{属性}={值}]')
+                    tag, attribute, value = extract_information(target)
+                    if tag and attribute:
+                        spliced_list.append(f'{tag}[@{attribute}={value}]')
                     elif tag:
-                        拼接列表.append(tag)
+                        spliced_list.append(tag)
 
-            拼接列表.reverse()
-            print(f"拼接列表：{拼接列表}")
-            return 拼接列表
+            spliced_list.reverse()
+            print(f"拼接列表：{spliced_list}")
+            return spliced_list
+
         # ========== #
-        拼接列表 = 处理父项目文本列表(父项目文本列表)
+        stitch_list_elements_ = handle_the_parent_item_text_list(parent_item_text_list)
+
         # ========== #
-        def 拼接列表元素(列表):
-            路径名无后缀 = self.file_path.replace('.xml', '').split('/')[-1]
-            拼接结果 = f'{路径名无后缀}/'
-            for i in range(len(列表)):
-                当前元素 = 列表[i].strip()  # 删除空白字符
-                拼接结果 += 当前元素
+        def stitch_list_elements(list_):
+            the_path_name_has_no_suffix = self.file_path.replace('.xml', '').split('/')[-1]
+            result = f'{the_path_name_has_no_suffix}/'
+            for i in range(len(list_)):
+                this_element = list_[i].strip()  # 删除空白字符
+                result += this_element
 
                 # 如果当前元素不是最后一个，且下一个元素不是[@xxx]形式，则添加/
-                if i < len(列表) - 1 and not re.match(r'\[@.*?\]', 列表[i + 1].strip()):
-                    拼接结果 += '/'
-            logger.debug(f"拼接结果：{拼接结果}")
-            return 拼接结果
+                if i < len(list_) - 1 and not re.match(r'\[@.*?\]', list_[i + 1].strip()):
+                    result += '/'
+            logger.debug(f"拼接结果：{result}")
+            return result
+
         # ========== #
-        拼接结果 = 拼接列表元素(拼接列表)
+        result = stitch_list_elements_(stitch_list_elements_)
         # 设置标签文本_代码编辑区的文本
-        self.标签文本_代码编辑区.setText(f'xpath路径：{拼接结果}')
+        self.Label_Text_Code_Editing_Area.setText(f'xpath路径：{result}')
 
-
-    def 刷新事件(self):
+    def refresh_event(self):
         # 清空树控件
         self.tree_model.clear()
         # 清空标签文本
-        self.标签文本.setText("文件路径：")
+        self.label_text.setText("文件路径：")
 
-    def 选择文件事件(self):
+    def select_file_event(self):
         # 弹出文件选择对话框
         self.file_path = ""
         self.file_path = QFileDialog.getOpenFileName(self, "选择文件", "./", "xml文件(*.xml)")[0]
         # 连接标签文本更新槽函数
-        self.标签文本.setText("文件路径：" + self.file_path)
+        self.label_text.setText("文件路径：" + self.file_path)
         # 解析xml文件
-        root = self.解析xml文件()
+        root = self.parsing_xml_files()
 
-        self.创建标准项模型_设置树控件(root)
+        self.create_a_standard_item_model_settings_tree_control(root)
 
-    def 解析xml文件(self):
+    def parsing_xml_files(self):
         import xml.etree.ElementTree as ET
         try:
             root = ET.parse(self.file_path).getroot()
@@ -271,7 +277,7 @@ class XPathSelector(QMainWindow):
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
                 if url.fileName().endswith(".xml"):
-                    event.acceptProposedAction()    # 接受拖入文件
+                    event.acceptProposedAction()  # 接受拖入文件
 
     def dropEvent(self, event: PySide6.QtGui.QDropEvent) -> None:
         logger.debug("放下文件")
@@ -281,92 +287,92 @@ class XPathSelector(QMainWindow):
                 if url.fileName().endswith(".xml"):
                     self.file_path = url.toLocalFile()
                     # 连接标签文本更新槽函数
-                    self.标签文本.setText("文件路径：" + self.file_path)
+                    self.label_text.setText("文件路径：" + self.file_path)
                     # 解析xml文件
-                    root = self.root_load = self.解析xml文件()
+                    root = self.root_load = self.parsing_xml_files()
                     logger.debug("放下事件完成")
-                    self.创建标准项模型_设置树控件(root)
+                    self.create_a_standard_item_model_settings_tree_control(root)
 
-    def 加载xml到树(self, xml节点, 树节点):
-        for 子节点 in xml节点:
+    def Load_xml_into_the_tree(self, xml_node, tree_node):
+        for child_nodes in xml_node:
             # 获取第一个属性的描述
-            第一个属性描述 = ""
-            属性列表 = list(子节点.attrib.items())     # 将属性转换为列表
-            if 属性列表:
-                第一个属性, 值 = 属性列表[0]
-                第一个属性描述 = f" | {第一个属性}={值}"
-                if len(属性列表) > 1:
-                    第一个属性描述 += "  ..."
+            the_first_property_description = ""
+            a_list_of_properties = list(child_nodes.attrib.items())  # 将属性转换为列表
+            if a_list_of_properties:
+                the_first_property, value = a_list_of_properties[0]
+                the_first_property_description = f" | {the_first_property}={value}"
+                if len(a_list_of_properties) > 1:
+                    the_first_property_description += "  ..."
 
             # 创建树中的节点
-            子树节点 = QStandardItem(子节点.tag + 第一个属性描述)
+            subtree_nodes = QStandardItem(child_nodes.tag + the_first_property_description)
             # 设置字体颜色为亮灰色
-            子树节点.setForeground(QBrush(Qt.white))
-            树节点.appendRow(子树节点)
+            subtree_nodes.setForeground(QBrush(Qt.white))
+            tree_node.appendRow(subtree_nodes)
 
             # 如果节点有内容，添加内容节点
-            if 子节点.text and 子节点.text.strip():
-                内容节点 = QStandardItem(子节点.text.strip())
+            if child_nodes.text and child_nodes.text.strip():
+                content_nodes = QStandardItem(child_nodes.text.strip())
                 # 设置字体颜色为亮灰色
-                内容节点.setForeground(QBrush(Qt.white))
-                子树节点.appendRow(内容节点)
+                content_nodes.setForeground(QBrush(Qt.white))
+                subtree_nodes.appendRow(content_nodes)
 
             # 如果有属性，创建属性子树
-            if 子节点.attrib:
+            if child_nodes.attrib:
                 # 属性子树节点 = QStandardItem(f'{子节点.tag}[@属性]')
                 # 属性子树节点.setForeground(QBrush(Qt.white))
                 # 子树节点.appendRow(属性子树节点)
-                for 属性, 值 in 子节点.attrib.items():
-                    属性节点 = QStandardItem(f'{子节点.tag}[@{属性}]={值}')
-                    属性节点.setForeground(QBrush(Qt.white))
-                    子树节点.appendRow(属性节点)
+                for attribute, value in child_nodes.attrib.items():
+                    properties_node = QStandardItem(f'{child_nodes.tag}[@{attribute}]={value}')
+                    properties_node.setForeground(QBrush(Qt.white))
+                    subtree_nodes.appendRow(properties_node)
 
             # 递归调用
-            self.加载xml到树(子节点, 子树节点)
+            self.Load_xml_into_the_tree(child_nodes, subtree_nodes)
 
-    def 创建标准项模型_设置树控件(self, root):
+    def create_a_standard_item_model_settings_tree_control(self, root):
         # 创建一个标准项模型
         self.tree_model = QStandardItemModel()
         self.tree_model.setHorizontalHeaderLabels(['XML结构'])  # 设置表头
         # 添加root节点到模型
-        根节点 = self.tree_model.invisibleRootItem()
-        self.加载xml到树(root, 根节点)
+        root_node = self.tree_model.invisibleRootItem()
+        self.Load_xml_into_the_tree(root, root_node)
         # 设置树控件的模型
         self.tree.setModel(self.tree_model)
         logger.info("解析xml文件成功")
 
     def set_xpath_set模板(self):
-        xpath路径 = self.标签文本_代码编辑区.text().split("：")[-1]
-        模板set = f"""<config>
-    <set xpath="{xpath路径}"></set>
+        xpath_path = self.Label_Text_Code_Editing_Area.text().split("：")[-1]
+        template_set = f"""<config>
+    <set xpath="{xpath_path}"></set>
 </config>
         """
-        if xpath路径:
-            self.文本编辑框_代码编辑区.append(模板set)
+        if xpath_path:
+            self.text_edit_box_code_edit_area.append(template_set)
         else:
-            self.文本编辑框_代码编辑区.append("请先选择好xpath路径")
+            self.text_edit_box_code_edit_area.append("请先选择好xpath路径")
 
     def set_xpath_append模块(self):
-        xpath路径 = self.标签文本_代码编辑区.text().split("：")[-1]
-        模板append = f"""<config>
-    <append xpath="{xpath路径}"></append>
+        xpath_path = self.Label_Text_Code_Editing_Area.text().split("：")[-1]
+        template_append = f"""<config>
+    <append xpath="{xpath_path}"></append>
 </config>
         """
-        if xpath路径:
-            self.文本编辑框_代码编辑区.append(模板append)
+        if xpath_path:
+            self.text_edit_box_code_edit_area.append(template_append)
         else:
-            self.文本编辑框_代码编辑区.append("请先选择好xpath路径")
+            self.text_edit_box_code_edit_area.append("请先选择好xpath路径")
 
     def set_xpath_remove模块(self):
-        xpath路径 = self.标签文本_代码编辑区.text().split("：")[-1]
-        模板remove = f"""<config>
-    <remove xpath="{xpath路径}"></remove>
+        xpath_path = self.Label_Text_Code_Editing_Area.text().split("：")[-1]
+        template_remove = f"""<config>
+    <remove xpath="{xpath_path}"></remove>
 </config>
         """
-        if xpath路径:
-            self.文本编辑框_代码编辑区.append(模板remove)
+        if xpath_path:
+            self.text_edit_box_code_edit_area.append(template_remove)
         else:
-            self.文本编辑框_代码编辑区.append("请先选择好xpath路径")
+            self.text_edit_box_code_edit_area.append("请先选择好xpath路径")
 
 
 if __name__ == "__main__":
