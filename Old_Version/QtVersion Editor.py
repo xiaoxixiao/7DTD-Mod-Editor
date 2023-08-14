@@ -459,7 +459,7 @@ class ModEditor(QMainWindow):
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasUrls():
-            event.acceptProposedAction()
+            event.acceptProposedAction()    # 接受拖放操作
             logger.info("拖放的内容包含URL，已接受拖放操作")
 
     def dropEvent(self, event):
